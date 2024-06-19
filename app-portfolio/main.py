@@ -1,10 +1,10 @@
 import streamlit as st
-
+import pandas as pd
 st.set_page_config(page_title="Sam Ervin", page_icon=":smiley:", layout="wide")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.image("images/sam.jpg", width=300, caption="Sam Ervin")
+    st.image("app-portfolio/images/photo.jpg", width=300, caption="Sam Ervin")
 
 with col2:  
     st.title("Samuel(Sam) Ervin")
@@ -16,4 +16,22 @@ with col2:
     GO, NodeJS, and React deployed on both cloud and internal infrastructures. As a software engineer and manager, I have worked on 
     designing strategies, implementing and documenting best practices for my own and enterprise teams for DevOps at Walmart using the
     tooling required to implement these such as ServiceDesk, Jira, Concord Ansible, Looper, Jenkins, ArgoCd, git, and GitHub to ensure CI/CD. """
-    st.write(content)    
+    st.info(content)    
+    
+content2 = """Below are some of the python projects I have worked on as examples. 
+Please click on the links to view the projects and the code."""
+
+st.write(content2)
+
+#use pandsa to read the csv file
+df = pd.read_csv("app-portfolio/data/data.csv", sep=";")
+
+col3, col4 = st.columns(2)
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row["title"])
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row["title"])
